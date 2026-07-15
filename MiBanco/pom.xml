@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Herencia del POM Padre -->
+  <parent>
+    <groupId>edu.upvictoria.spolancom</groupId>
+    <artifactId>ProyectoBancario</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>MiBanco</artifactId>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <!-- Dependencia al submódulo Leer -->
+    <dependency>
+      <groupId>edu.upvictoria.spolancom</groupId>
+      <artifactId>Leer</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <mainClass>edu.upvictoria.spolancom.App</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

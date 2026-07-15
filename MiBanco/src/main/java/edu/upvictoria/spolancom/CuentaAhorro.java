@@ -1,4 +1,4 @@
-package upvictoria.spolancom;
+package edu.upvictoria.spolancom;
 
 public class CuentaAhorro extends CuentaBase{
 

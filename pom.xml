@@ -2,32 +2,47 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>upvictoria.spolancom</groupId>
-  <artifactId>MiBanco</artifactId>
-  <packaging>jar</packaging>
+  <groupId>edu.upvictoria.spolancom</groupId>
+  <artifactId>ProyectoBancario</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <!-- El empaquetado debe ser pom para el agregador -->
+  <packaging>pom</packaging>
 
-  <name>MiBanco</name>
-  <url>http://maven.apache.org</url>
+  <!-- Los submódulos se declaran explícitamente -->
+  <modules>
+    <module>Leer</module>
+    <module>MiBanco</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
+    <junit.version>4.13.2</junit.version>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>upvictoria.spolancom</groupId>
-      <artifactId>Leer</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+
+  <!-- Centralización de dependencias -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>edu.upvictoria.spolancom</groupId>
+        <artifactId>Leer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>5.11.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement>
@@ -41,8 +56,6 @@
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
         </plugin>
-
-        <!-- FIX: Plugin actualizado a la versión 3.13.0 para dar soporte completo a Java 21 -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -51,17 +64,6 @@
             <release>21</release>
           </configuration>
         </plugin>
-
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>3.3.0</version>
-          <configuration>
-            <mainClass>upvictoria.spolancom.App</mainClass>
-          </configuration>
-        </plugin>
-
-        <!-- Actualizado: Versiones viejas de surefire fallan al leer binarios de Java moderno -->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.2.5</version>

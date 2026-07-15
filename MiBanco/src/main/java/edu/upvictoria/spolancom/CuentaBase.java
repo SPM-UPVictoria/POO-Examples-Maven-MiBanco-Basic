@@ -1,4 +1,4 @@
-package upvictoria.spolancom;
+package edu.upvictoria.spolancom;
 
 public abstract class CuentaBase {
 
